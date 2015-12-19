@@ -3,7 +3,7 @@ var paths = require('./webpack/paths');
 module.exports = {
   resolve: {
     root: path.resolve('./' + paths.app),
-    extensions: ['', '.webpack.js', '.web.js', '.js']
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.ts']
   },
   context: __dirname + '/' + paths.app,
   entry: path.resolve(__dirname, paths.app),
