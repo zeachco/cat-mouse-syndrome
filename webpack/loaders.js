@@ -11,9 +11,6 @@ module.exports = [{
   exclude: /node_modules/,
   loader: 'babel-loader'
 }, {
-  test: /\.ts$/,
-  loader: 'ts-loader'
-}, {
   test: /\.js$/,
   loader: 'eslint-loader',
   exclude: /node_modules/

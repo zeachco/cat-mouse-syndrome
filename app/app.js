@@ -1,29 +1,40 @@
-(function() {
+var angular = require('angular2/bundles/angular2');
 
-var AppComponent = ng
-  .Component({
-    selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
-  })
-  .Class({
-    constructor: function () { }
-  });
-
-document.addEventListener('DOMContentLoaded', function() {
-  ng.bootstrap(AppComponent);
-});
-
-})();
-
-/* Non DSL Approach */
-(function() {
-
-function  AppComponent () {}
+// Create Main App Component
+function AppComponent() {
+  this.version = "1.0.0";
+  this.items = ["Header", "Content", "Footer"];
+};
 
 AppComponent.annotations = [
-  new ng.Component({
-    selector: 'my-app',
-    template: '<h1 id="output">My First Angular 2 App</h1>'
+  new angular.ComponentAnnotation({
+    selector: 'my-app'
+  }),
+  new angular.ViewAnnotation({
+    template: '\
+                <div>App Version:{{version}}</div>\
+                <div *for="#item of items">{{item}}</div>\
+                <sub></sub>',
+    directives: [SubComponent, angular.For]
   })
 ];
-})();
+
+// Create Sub Component
+function SubComponent() {
+  this.name = "Sub Component";
+};
+SubComponent.annotations = [
+  new angular.ComponentAnnotation({
+    selector: 'sub'
+  }),
+  new angular.ViewAnnotation({
+    template: '<div>{{name}}</div>'
+  })
+];
+
+
+// Bootstrap Application
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('yay');
+  angular.bootstrap(AppComponent);
+});
